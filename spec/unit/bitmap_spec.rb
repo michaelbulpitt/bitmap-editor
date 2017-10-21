@@ -2,6 +2,7 @@ require_relative '../../lib/bitmap'
 
 RSpec.describe Bitmap do
   subject { described_class }
+  let(:blank_bitmap) { Array.new(5) { Array.new(5, 'O') } }
 
   describe 'creation' do
     context 'wrong arguments provided' do
@@ -12,24 +13,15 @@ RSpec.describe Bitmap do
 
     context 'with valid dimensions' do
       subject { described_class.new(width: 5, height: 5) }
-      let(:expected_bitmap) do
-        [
-          ['O', 'O', 'O', 'O', 'O'],
-          ['O', 'O', 'O', 'O', 'O'],
-          ['O', 'O', 'O', 'O', 'O'],
-          ['O', 'O', 'O', 'O', 'O'],
-          ['O', 'O', 'O', 'O', 'O']
-        ]
-      end
 
       it 'creates a blank bitmap with correct dimensions' do
-        expect(subject.pixels).to eq(expected_bitmap)
+        expect(subject.pixels).to eq(blank_bitmap)
       end
     end
   end
 
   describe '#colour_pixel' do
-    subject { Bitmap.new(width: 5, height: 5) }
+    subject { described_class.new(width: 5, height: 5) }
 
     context 'with valid pixel coordinate' do
       it 'colours correct pixel' do
@@ -49,15 +41,7 @@ RSpec.describe Bitmap do
     context 'with invalid pixel coordinate' do
       it 'does not colour pixel' do
         subject.colour_pixel(column: 6, row: 1, colour: 'D')
-        expect(subject.pixels).to eq(
-          [
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O']
-          ]
-        )
+        expect(subject.pixels).to eq(blank_bitmap)
       end
     end
   end
@@ -83,15 +67,7 @@ RSpec.describe Bitmap do
     context 'with invalid pixel coordinate' do
       it 'does not colour pixels' do
         subject.colour_column(column: 2, start_row: 2, end_row: 7, colour: 'D')
-        expect(subject.pixels).to eq(
-          [
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O']
-          ]
-        )
+        expect(subject.pixels).to eq(blank_bitmap)
       end
     end
   end
@@ -117,15 +93,7 @@ RSpec.describe Bitmap do
     context 'with invalid pixel coordinate' do
       it 'does not colour pixels' do
         subject.colour_row(start_column: 1, end_column: 10, row: 2, colour: 'D')
-        expect(subject.pixels).to eq(
-          [
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O']
-          ]
-        )
+        expect(subject.pixels).to eq(blank_bitmap)
       end
     end
   end

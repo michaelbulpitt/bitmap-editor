@@ -29,15 +29,19 @@ class BitmapProcessor
     when /H (\d+) (\d+) (\d+) ([A-Z])/
       check_bitmap && bitmap.colour_row(start_column: $1, end_column: $2, row: $3, colour: $4)
     when 'S'
-      raise 'No image to print' if bitmap.nil?
-      exporter_processor = exporter.new(bitmap: bitmap.pixels)
-      exporter_processor.process
+      export_bitmap
     else
       puts 'Unrecognised command'
     end
   end
 
   private
+
+  def export_bitmap
+    raise 'No image to print' if bitmap.nil?
+    exporter_processor = exporter.new(bitmap: bitmap.pixels)
+    exporter_processor.process
+  end
 
   def check_bitmap
     raise 'Please provide an image' if bitmap.nil?

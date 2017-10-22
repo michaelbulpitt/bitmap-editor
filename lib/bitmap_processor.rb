@@ -10,7 +10,7 @@ class BitmapProcessor
   end
 
   def process
-    raise RuntimeError, 'No commands found' if commands.nil? || commands.empty?
+    raise 'No commands found' if commands.nil? || commands.empty?
     commands.each do |command|
       process_command(command)
     end
@@ -27,7 +27,7 @@ class BitmapProcessor
     when /H (\d+) (\d+) (\d+) ([A-Z])/
       check_bitmap && bitmap.colour_row(start_column: $1, end_column: $2, row: $3, colour: $4)
     when 'S'
-      raise RuntimeError, 'No image to print' if bitmap.nil?
+      raise 'No image to print' if bitmap.nil?
       exporter_processor = exporter.new(bitmap: bitmap.pixels)
       exporter_processor.process
     else
@@ -38,7 +38,7 @@ class BitmapProcessor
   private
 
   def check_bitmap
-    raise RuntimeError, 'Please provide an image' if bitmap.nil?
+    raise 'Please provide an image' if bitmap.nil?
     true
   end
 end

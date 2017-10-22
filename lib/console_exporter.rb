@@ -7,6 +7,6 @@ class ConsoleExporter
 
   def process
     return false unless bitmap
-    puts bitmap.map{|row| row.join('')}.join("\n")
+    puts bitmap.map { |row| row.join('') }.join("\n")
   end
 end

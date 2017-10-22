@@ -40,15 +40,13 @@ class Bitmap
   private
 
   def validate
-    raise RuntimeError, 'Image dimensions are invalid' unless valid_dimensions?
+    raise 'Image dimensions are invalid' unless valid_dimensions?
     true
   end
 
   def valid_dimensions?
-    height >= MIN_HEIGHT &&
-    height <= MAX_HEIGHT &&
-    width >= MIN_WIDTH &&
-    width <= MAX_WIDTH
+    height >= MIN_HEIGHT && height <= MAX_HEIGHT &&
+    width >= MIN_WIDTH && width <= MAX_WIDTH
   end
 
   def valid_coordinate?(column, row)
@@ -56,17 +54,11 @@ class Bitmap
   end
 
   def valid_column_coordinates?(column, start_row, end_row)
-    valid_column?(column) &&
-    valid_row?(start_row) &&
-    valid_row?(end_row) &&
-    start_row <= end_row
+    valid_column?(column) && valid_row?(start_row) && valid_row?(end_row) && start_row <= end_row
   end
 
   def valid_row_coordinates?(start_column, end_column, row)
-    valid_column?(start_column) &&
-    valid_column?(end_column) &&
-    valid_row?(row) &&
-    start_column <= end_column
+    valid_column?(start_column) && valid_column?(end_column) && valid_row?(row) && start_column <= end_column
   end
 
   def valid_column?(column)

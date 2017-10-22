@@ -37,6 +37,10 @@ class Bitmap
     end
   end
 
+  def reset
+    generate_pixels
+  end
+
   private
 
   def validate

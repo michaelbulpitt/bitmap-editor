@@ -9,7 +9,7 @@ RSpec.describe 'Drawing a bitmap image' do
 
   describe 'with no file specified' do
     it 'prints an error' do
-      expect(STDOUT).to receive(:puts).with('Please provide a correct file')
+      expect(STDOUT).to receive(:puts).with('File not provided')
       BitmapEditor.new.run(nil)
     end
   end
@@ -20,12 +20,4 @@ RSpec.describe 'Drawing a bitmap image' do
       BitmapEditor.new.run(correct_commands_file)
     end
   end
-
-  describe 'with invalid first command' do
-    it 'prints an error' do
-      expect(STDOUT).to receive(:puts).with('Not a valid file')
-      BitmapEditor.new.run(invalid_commands_file)
-    end
-  end
-
 end

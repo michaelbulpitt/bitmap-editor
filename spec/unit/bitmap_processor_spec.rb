@@ -71,6 +71,16 @@ RSpec.describe BitmapProcessor do
       end
     end
 
+    context 'reset bitmap command' do
+      let(:command) { 'C' }
+      let(:bitmap) { Bitmap.new(width: 5, height: 5) }
+
+      it 'calls colour_pixel command with correct args' do
+        expect(bitmap).to receive(:reset) { true }
+        subject.process_command(command)
+      end
+    end
+
     context 'colour column command' do
       let(:command) { 'V 2 3 6 W' }
       let(:bitmap) { Bitmap.new(width: 5, height: 5) }

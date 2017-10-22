@@ -7,6 +7,7 @@ class Bitmap
 
   def initialize(width:, height:)
     @width, @height = Integer(width), Integer(height)
+    validate
     generate_pixels
   end
 
@@ -37,6 +38,18 @@ class Bitmap
   end
 
   private
+
+  def validate
+    raise RuntimeError, 'Image dimensions are invalid' unless valid_dimensions?
+    true
+  end
+
+  def valid_dimensions?
+    height >= MIN_HEIGHT &&
+    height <= MAX_HEIGHT &&
+    width >= MIN_WIDTH &&
+    width <= MAX_WIDTH
+  end
 
   def valid_coordinate?(column, row)
     valid_column?(column) && valid_row?(row)

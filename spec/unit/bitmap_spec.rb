@@ -46,6 +46,28 @@ RSpec.describe Bitmap do
     end
   end
 
+  describe '#reset' do
+    subject { described_class.new(width: 5, height: 5) }
+
+    before do
+      subject.colour_column(column: 2, start_row: 2, end_row: 5, colour: 'D')
+    end
+
+    it 'resets pixels to O' do
+      expect(subject.pixels).to eq(
+        [
+          ['O', 'O', 'O', 'O', 'O'],
+          ['O', 'D', 'O', 'O', 'O'],
+          ['O', 'D', 'O', 'O', 'O'],
+          ['O', 'D', 'O', 'O', 'O'],
+          ['O', 'D', 'O', 'O', 'O']
+        ]
+      )
+      subject.reset
+      expect(subject.pixels).to eq(blank_bitmap)
+    end
+  end
+
   describe '#colour_column' do
     subject { described_class.new(width: 5, height: 5) }
 

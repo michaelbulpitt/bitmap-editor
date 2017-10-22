@@ -22,6 +22,8 @@ class BitmapProcessor
       @bitmap = ::Bitmap.new(width: $1, height: $2)
     when /L (\d+) (\d+) ([A-Z])/
       check_bitmap && bitmap.colour_pixel(column: $1, row: $2, colour: $3)
+    when 'C'
+      check_bitmap && bitmap.reset
     when /V (\d+) (\d+) (\d+) ([A-Z])/
       check_bitmap && bitmap.colour_column(column: $1, start_row: $2, end_row: $3, colour: $4)
     when /H (\d+) (\d+) (\d+) ([A-Z])/

@@ -1,0 +1,16 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
+Metrics/AbcSize:
+  Exclude:
+    - 'spec/features/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Exclude:
+    - 'spec/features/**/*'

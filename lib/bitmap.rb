@@ -50,7 +50,7 @@ class Bitmap
 
   def valid_dimensions?
     height >= MIN_HEIGHT && height <= MAX_HEIGHT &&
-    width >= MIN_WIDTH && width <= MAX_WIDTH
+      width >= MIN_WIDTH && width <= MAX_WIDTH
   end
 
   def valid_coordinate?(column, row)

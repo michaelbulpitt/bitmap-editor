@@ -7,7 +7,7 @@ RSpec.describe Bitmap do
   describe 'creation' do
     context 'wrong arguments provided' do
       it 'throws ArgumentError' do
-        expect { subject.new() }.to raise_error(ArgumentError)
+        expect { subject.new }.to raise_error(ArgumentError)
       end
     end
 
@@ -28,11 +28,11 @@ RSpec.describe Bitmap do
         subject.colour_pixel(column: 1, row: 3, colour: 'D')
         expect(subject.pixels).to eq(
           [
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['D', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O']
+            %w[O O O O O],
+            %w[O O O O O],
+            %w[D O O O O],
+            %w[O O O O O],
+            %w[O O O O O]
           ]
         )
       end
@@ -56,11 +56,11 @@ RSpec.describe Bitmap do
     it 'resets pixels to O' do
       expect(subject.pixels).to eq(
         [
-          ['O', 'O', 'O', 'O', 'O'],
-          ['O', 'D', 'O', 'O', 'O'],
-          ['O', 'D', 'O', 'O', 'O'],
-          ['O', 'D', 'O', 'O', 'O'],
-          ['O', 'D', 'O', 'O', 'O']
+          %w[O O O O O],
+          %w[O D O O O],
+          %w[O D O O O],
+          %w[O D O O O],
+          %w[O D O O O]
         ]
       )
       subject.reset
@@ -76,11 +76,11 @@ RSpec.describe Bitmap do
         subject.colour_column(column: 2, start_row: 2, end_row: 5, colour: 'D')
         expect(subject.pixels).to eq(
           [
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'D', 'O', 'O', 'O'],
-            ['O', 'D', 'O', 'O', 'O'],
-            ['O', 'D', 'O', 'O', 'O'],
-            ['O', 'D', 'O', 'O', 'O']
+            %w[O O O O O],
+            %w[O D O O O],
+            %w[O D O O O],
+            %w[O D O O O],
+            %w[O D O O O]
           ]
         )
       end
@@ -102,11 +102,11 @@ RSpec.describe Bitmap do
         subject.colour_row(start_column: 2, end_column: 4, row: 2, colour: 'D')
         expect(subject.pixels).to eq(
           [
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'D', 'D', 'D', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O']
+            %w[O O O O O],
+            %w[O D D D O],
+            %w[O O O O O],
+            %w[O O O O O],
+            %w[O O O O O]
           ]
         )
       end

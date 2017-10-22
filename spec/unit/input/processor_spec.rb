@@ -15,7 +15,7 @@ RSpec.describe Input::Processor do
       let(:file) { nil }
 
       it 'raises RuntimeError' do
-        expect { subject }.to raise_error(RuntimeError, "File not provided")
+        expect { subject }.to raise_error(RuntimeError, 'File not provided')
       end
     end
 
@@ -23,7 +23,7 @@ RSpec.describe Input::Processor do
       let(:file) { './spec/fixtures/invalid_file_type.csv' }
 
       it 'raises RuntimeError' do
-        expect { subject }.to raise_error(RuntimeError, "Invalid file type")
+        expect { subject }.to raise_error(RuntimeError, 'Invalid file type')
       end
     end
   end

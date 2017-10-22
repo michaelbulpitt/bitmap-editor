@@ -2,19 +2,18 @@ require_relative '../../lib/console_exporter'
 
 RSpec.describe ConsoleExporter do
   subject { described_class.new(bitmap: bitmap) }
-  let(:bitmap) {
+  let(:bitmap) do
     [
-      ['O', 'O', 'O', 'O', 'O'],
-      ['O', 'D', 'D', 'D', 'O'],
-      ['W', 'O', 'O', 'O', 'O'],
-      ['W', 'O', 'B', 'A', 'O'],
-      ['O', 'O', 'O', 'O', 'O']
+      %w[O O O O O],
+      %w[O D D D O],
+      %w[W O O O O],
+      %w[W O B A O],
+      %w[O O O O O]
     ]
-  }
+  end
 
   describe '#process' do
     context 'valid bitmap' do
-
       it 'logs bitmap in correct format' do
         expect(STDOUT).to receive(:puts). with("OOOOO\nODDDO\nWOOOO\nWOBAO\nOOOOO")
         subject.process

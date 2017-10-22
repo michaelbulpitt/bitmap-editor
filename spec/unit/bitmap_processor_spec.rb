@@ -16,7 +16,7 @@ RSpec.describe BitmapProcessor do
       let(:commands) { nil }
 
       it 'raises RuntimeError' do
-        expect{ subject.process }.to raise_error(RuntimeError, 'No commands found')
+        expect { subject.process }.to raise_error(RuntimeError, 'No commands found')
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe BitmapProcessor do
       let(:commands) { [] }
 
       it 'raises RuntimeError' do
-        expect{ subject.process }.to raise_error(RuntimeError, 'No commands found')
+        expect { subject.process }.to raise_error(RuntimeError, 'No commands found')
       end
     end
   end

@@ -3,10 +3,13 @@ require_relative '../../lib/bitmap_editor'
 RSpec.describe 'Drawing a bitmap image' do
   let(:expected_output_1) { "OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO" }
   let(:expected_output_2) { "OOOOO\nOOZZZ\nOWOOO\nOWOOO\nOWOOO\nOWOOO" }
+
   let(:correct_commands_file) { './spec/fixtures/correct_commands.txt' }
   let(:no_image_file) { './spec/fixtures/no_image.txt' }
   let(:invalid_file) { './spec/fixtures/invalid_file_type.csv' }
   let(:invalid_commands_file) { './spec/fixtures/invalid_commands.txt' }
+  let(:too_big_file) { './spec/fixtures/image_too_big.txt' }
+  let(:too_small_file) { './spec/fixtures/image_too_small.txt' }
 
   describe 'with no file specified' do
     it 'prints an error' do
@@ -26,6 +29,22 @@ RSpec.describe 'Drawing a bitmap image' do
     it 'prints an error' do
       expect(STDOUT).to receive(:puts).with('Please provide an image')
       BitmapEditor.new.run(no_image_file)
+    end
+  end
+
+  describe 'with invalid dimensions' do
+    context 'image too large' do
+      it 'prints and error' do
+        expect(STDOUT).to receive(:puts).with('Image dimensions are invalid')
+        BitmapEditor.new.run(too_big_file)
+      end
+    end
+
+    context 'image too small' do
+      it 'prints and error' do
+        expect(STDOUT).to receive(:puts).with('Image dimensions are invalid')
+        BitmapEditor.new.run(too_small_file)
+      end
     end
   end
 
